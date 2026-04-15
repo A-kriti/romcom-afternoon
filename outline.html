@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akriti Book Event</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* Base */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe, #fdf4ff);
+    color: #4c1d95;
+    overflow-x: hidden;
+}
+
+/* Background glow */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, #c4b5fd, transparent 70%);
+    z-index: -1;
+}
+body::before { top: -120px; left: -120px; }
+body::after { bottom: -120px; right: -120px; }
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 60px 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    font-weight: 700;
+
+    background: linear-gradient(90deg, #a78bfa, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 0 0 15px rgba(124,58,237,0.2);
+}
+
+.header p {
+    color: #7c3aed;
+    margin-top: 8px;
+}
+
+/* Layout */
+.main {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Book */
+.book {
+    perspective: 1000px;
+}
+
+.book img {
+    width: 260px;
+    border-radius: 16px;
+    transform: rotateY(-12deg) rotateX(5deg);
+    box-shadow: 0 30px 60px rgba(124,58,237,0.25);
+    transition: 0.4s;
+}
+
+.book img:hover {
+    transform: rotateY(0) scale(1.05);
+}
+
+/* Details */
+.details {
+    flex: 1;
+    min-width: 260px;
+}
+
+.tag {
+    display: inline-block;
+    background: #ddd6fe;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.details h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+}
+
+.book-name {
+    color: #7c3aed;
+    margin-bottom: 15px;
+}
+
+/* Info */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info div {
+    background: #faf5ff;
+    padding: 10px 14px;
+    border-radius: 12px;
+}
+
+/* Button */
+.buy-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 25px;
+    margin-top: 12px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    transform: scale(1.07);
+}
+
+/* 🌼 Highlights */
+.highlights {
+    margin-top: 60px;
+    background: linear-gradient(135deg, #fefce8, #fef9c3);
+    padding: 35px 25px;
+    border-radius: 26px;
+
+    box-shadow: 
+        0 15px 50px rgba(124,58,237,0.15),
+        0 0 30px rgba(251,191,36,0.25);
+
+    border: 1px solid rgba(251,191,36,0.4);
+    text-align: center;
+}
+
+/* 🌼 Pinterest Heading */
+.highlights h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+
+    background: linear-gradient(90deg, #eab30e, #b17f01, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow: 
+        0 0 10px rgba(251,191,36,0.4),
+        0 0 20px rgba(251,191,36,0.2);
+
+    letter-spacing: 0.5px;
+}
+
+/* underline glow */
+.highlights h3::after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 4px;
+    margin: 10px auto 0;
+    border-radius: 10px;
+
+    background: linear-gradient(90deg, #fbbf24, #fde68a);
+    box-shadow: 
+        0 0 10px rgba(251,191,36,0.6),
+        0 0 20px rgba(251,191,36,0.3);
+}
+
+/* List */
+.highlights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+.highlights li {
+    background: rgba(255,255,255,0.75);
+    padding: 14px 18px;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    font-size: 14.5px;
+    color: #6b3f1d;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.highlights li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(124,58,237,0.15);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    font-style: italic;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .main { flex-direction: column; }
+    .book img { transform: none; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>✨ An Afternoon with the Author ✨</h1>
+        
+        <p style="font-size:18px; margin-top:10px;">
+            Feel the love & magic of rom-coms 💕
+        </p>
+        
+        <p style="font-size:14px; max-width:520px; margin:6px auto 0; line-height:1.6;">
+            Join us to explore <em>The ROI of Falling in Love</em>, share your story, and we’d love to hear yours too 💌
+        </p>
+    </div>
+
+    <div class="main">
+
+        <div class="book">
+            <img src="coverpage.png">
+        </div>
+
+        <div class="details">
+            <div class="tag">💜 Featuring Author</div>
+            <h2>Akriti</h2>
+            <div class="book-name">The ROI of Falling in Love</div>
+
+            <div class="info">
+                <div>📅 16 May 2026</div>
+                <div>⏰ 2:30 PM – 4:30 PM</div>
+                <div>📍 Kitakasai Community Hall, Tokyo</div>
+                <div>🔗 <a href="https://maps.app.goo.gl/MJC8BburdGEYbfHE8" target="_blank">View Location</a></div>
+            </div>
+
+            <a href="https://amzn.asia/d/06pEZrZK" target="_blank" class="buy-btn">
+                🛒 Buy on Amazon
+            </a>
+        </div>
+
+    </div>
+
+    <!-- 🌼 Highlights -->
+    <div class="highlights">
+        <h3>🌼 What’s Happening</h3>
+        <ul>
+            <li>🎤 A warm welcome + meet-the-author moment 💜</li>
+            <li>📖 Live reading from the book (get ready for feels ✨)</li>
+            <li>💬 Conversation about <strong>The ROI of Falling in Love</strong> 💕</li>
+            <li>☕ Snacks, sips & cozy little vibes 🌸</li>
+            <li>✒️ Signed copies + sweet memories to take home 💌</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        Come for the stories, stay for the vibes 💜
+    </div>
+
+</div>
+
+<!-- 🌸 Floating Flowers -->
+<script>
+for (let i = 0; i < 35; i++) {
+    let flower = document.createElement("div");
+    flower.innerHTML = "🌸";
+    flower.style.position = "fixed";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.top = "-20px";
+    flower.style.fontSize = (10 + Math.random() * 15) + "px";
+    flower.style.opacity = Math.random();
+    flower.style.animation = `fall ${5 + Math.random() * 5}s linear infinite`;
+    document.body.appendChild(flower);
+}
+
+const style = document.createElement('style');
+style.innerHTML = `@keyframes fall { to { transform: translateY(110vh); } }`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
